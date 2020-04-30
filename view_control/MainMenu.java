@@ -64,6 +64,12 @@ public class MainMenu extends JFrame {
 		JMenu mnHone = new JMenu("Home");
 		menuBar.add(mnHone);
 		
+		JMenu mnMinilabs = new JMenu("MiniLabs");
+		menuBar.add(mnMinilabs);
+		
+		JMenuItem mntmSocialDistancing = new JMenuItem("Social Distancing");
+		mnMinilabs.add(mntmSocialDistancing);
+		
 		
 	}
 	
