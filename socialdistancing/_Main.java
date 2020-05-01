@@ -8,7 +8,7 @@ public class _Main {
 	/* 
 	 * Entry point, starts Settings Panel
 	 */
-	public static void main( String[] args ) {
+	public static void main(String[] args) {
 		//this is instance of main
 		_Main m = new _Main();
 		

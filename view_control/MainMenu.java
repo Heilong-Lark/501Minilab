@@ -10,6 +10,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
+import labs.calculator;
+import socialdistancing.Building;
+import socialdistancing._Main;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
@@ -69,6 +73,13 @@ public class MainMenu extends JFrame {
 		
 		JMenuItem mntmSocialDistancing = new JMenuItem("Social Distancing");
 		mnMinilabs.add(mntmSocialDistancing);
+		mnMinilabs.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				_Main.main(null);
+				Building frame = new Building();
+				frame.setVisible(true);
+			}
+		});
 		
 		
 	}
