@@ -2,15 +2,10 @@ package socialdistancing;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -27,7 +22,7 @@ public class Building extends JPanel implements ActionListener{
 	
 	//simulation control objects/values
 	JFrame frame;
-	Control control; //
+	Control control;
 	Timer timer; //Event control	
 	int time = 0; //Track time as the simulation runs
 	
@@ -107,16 +102,17 @@ public class Building extends JPanel implements ActionListener{
 	} 
 	
 	public void makeWalls() {
-		for(int i = 0; i < 8; i++) {
-			if(i < 4) {
-				walls.add(new Wall(coords[i][0], coords[i][1], "SocialDistancingImages/wall2.png", true));
-			}
-			if(i >= 4) {
-				walls.add(new Wall(coords[i][0], coords[i][1], "SocialDistancingImages/wall1.png", false));
-			}
-		}
-	}
-	
+		walls.add(new Wall(coords[0][0], coords[0][1], "SocialDistancingImages/wall2.png", true));
+		walls.add(new Wall(coords[4][0], coords[4][1], "SocialDistancingImages/wall1.png", false));
+
+		walls.add(new Wall(coords[1][0], coords[1][1], "SocialDistancingImages/wall2.png", true));
+		walls.add(new Wall(coords[5][0], coords[5][1], "SocialDistancingImages/wall1.png", false));
 		
+		walls.add(new Wall(coords[2][0], coords[2][1], "SocialDistancingImages/wall2.png", true));
+		walls.add(new Wall(coords[6][0], coords[6][1], "SocialDistancingImages/wall1.png", false));
+		
+		walls.add(new Wall(coords[3][0], coords[3][1], "SocialDistancingImages/wall2.png", true));
+		walls.add(new Wall(coords[7][0], coords[7][1], "SocialDistancingImages/wall1.png", false));
+	}
 	
 }
