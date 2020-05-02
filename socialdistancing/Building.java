@@ -96,7 +96,6 @@ public class Building extends JPanel implements ActionListener{
 				walls.add(new Wall(coords[i][0], coords[i][1], "SocialDistancingImages/wall1.png", false));
 			}
 		}
-		System.out.println(walls.toString());
 	}
 	
 	public void paintWalls(Graphics g) {

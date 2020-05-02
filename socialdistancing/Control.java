@@ -152,9 +152,9 @@ public class Control {
 			
 			Rectangle personRect = new Rectangle(p.x,p.y, p.width, p.height);
 
-			for (Wall wall : view.walls) {
-				if(wall.getBounds().intersects(personRect))
-					if(wall.vertical)
+			for (Wall n : view.walls) {
+				if(n.getBounds().intersects(personRect))
+					if(n.vertical)
 					{
 						p.vx *= -1;
 					}
