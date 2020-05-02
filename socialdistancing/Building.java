@@ -34,7 +34,27 @@ public class Building extends JPanel implements ActionListener{
 	ArrayList<Wall> walls = new ArrayList<Wall>();
 	int[][] coords = {{550, 0}, {200, 0}, {550, 400}, {200, 400}, {620, 160}, {-25, 160}, {620, 400}, {-25, 400}};
 	
-	/* constructor will setup our main Graphic User Interface - a simple Frame! */
+	//activation of Simulator separated from Constructor 
+	public void activate() {
+		//Timer for animation
+		//Argument 1: timerValue is a period in milliseconds to fire event
+		//Argument 2:t any class that "implements ActionListener"
+		timer = new Timer(control.timerValue, this); //timer constructor
+		timer.restart(); //restart or start
+		
+		// frame becomes visible
+		frame.setVisible(true);		
+	}
+	
+	/* This invoked by Timer per period in milliseconds in timerValue  */
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		//Triggers paint call through polymorphism
+		repaint();	
+	}
+	
+	
+	/* constructor will setup our main Graphic User Interface - a simple Frame! */	
 	public Building(Control ctl, String title) {
 		makeWalls();
 		// used for Control callback
@@ -54,24 +74,23 @@ public class Building extends JPanel implements ActionListener{
 		frame.add(this); //add this class (JPanel) to the JFrame
 	}
 	
-	//activation of Simulator separated from Constructor 
-	public void activate() {
-		//Timer for animation
-		//Argument 1: timerValue is a period in milliseconds to fire event
-		//Argument 2:t any class that "implements ActionListener"
-		timer = new Timer(control.timerValue, this); //timer constructor
-		timer.restart(); //restart or start
+	public void paintWalls(Graphics g) {
+
+		for (Wall wall : walls) {
+			g.drawImage(wall.getImage(), wall.getX(), wall.getY(), this);
+		}
 		
-		// frame becomes visible
-		frame.setVisible(true);		
+		//text color
+		g.setColor(Color.BLUE);
+		g.setFont(new Font("Roboto", Font.BOLD, 20));
+		
+		g.drawString("Daiso", 610, 50);
+		g.drawString("Pokemon Center", 5, 50);
+		g.drawString("99 Ranch Market", 5, 440);
+		g.drawString("Leader Zin's House", 590, 440);
+		
 	}
-	
-	/* This invoked by Timer per period in milliseconds in timerValue  */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		//Triggers paint call through polymorphism
-		repaint();	
-	}
+
 
 	/* paint method for drawing the simulation and animation */
 	@Override
@@ -98,22 +117,6 @@ public class Building extends JPanel implements ActionListener{
 		}
 	}
 	
-	public void paintWalls(Graphics g) {
-
-		for (Wall wall : walls) {
-			g.drawImage(wall.getImage(), wall.getX(), wall.getY(), this);
-		}
-		
-		//text color
-		g.setColor(Color.BLUE);
-		g.setFont(new Font("Roboto", Font.BOLD, 20));
-		
-		g.drawString("Daiso", 610, 50);
-		g.drawString("Pokemon Center", 5, 50);
-		g.drawString("99 Ranch Market", 5, 440);
-		g.drawString("Leader Zin's House", 590, 440);
-		
-	}
 		
 	
 }
