@@ -2,8 +2,10 @@ package socialdistancing;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -29,8 +31,12 @@ public class Building extends JPanel implements ActionListener{
 	Timer timer; //Event control	
 	int time = 0; //Track time as the simulation runs
 	
+	ArrayList<Wall> walls = new ArrayList<Wall>();
+	int[][] coords = {{550, 0}, {200, 0}, {550, 400}, {200, 400}, {620, 160}, {-25, 160}, {620, 400}, {-25, 400}};
+	
 	/* constructor will setup our main Graphic User Interface - a simple Frame! */
 	public Building(Control ctl, String title) {
+		createWalls();
 		// used for Control callback
 		this.control = ctl;
 		
@@ -76,10 +82,40 @@ public class Building extends JPanel implements ActionListener{
 		
 		//events
 		super.paintComponent(g); // a necessary call to the parent paint method, required for proper screen refreshing
-		control.paintWalls(g);
+		paintWalls(g);
 		control.paintPersons(g); // repaint all objects in simulation
 		
 	} 
+	
+	public void createWalls() {
+		System.out.println("createWalls");
+		for(int i = 0; i < 8; i++) {
+			if(i < 4) {
+				walls.add(new Wall(coords[i][0], coords[i][1], "SocialDistancingImages/wall2.png", true));
+			}
+			if(i >= 4) {
+				walls.add(new Wall(coords[i][0], coords[i][1], "SocialDistancingImages/wall1.png", false));
+			}
+		}
+		System.out.println(walls.toString());
+	}
+	
+	public void paintWalls(Graphics g) {
+
+		for (Wall wall : walls) {
+			g.drawImage(wall.getImage(), wall.getX(), wall.getY(), this);
+		}
+		
+		//text color
+		g.setColor(Color.BLACK);
+		g.setFont(new Font("Roboto", Font.BOLD, 20));
+		
+		g.drawString("Sprouts", 610, 50);
+		g.drawString("Scripps Medical", 5, 50);
+		g.drawString("Board and Brew", 5, 440);
+		g.drawString("Mr. M's House", 590, 440);
+		
+	}
 		
 	
 }

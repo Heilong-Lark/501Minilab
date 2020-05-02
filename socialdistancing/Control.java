@@ -97,7 +97,7 @@ public class Control {
 		 */
 		public void runSimulation() {
 			//Setup to the Simulation Panel/Frame
-			Building view = new Building(this, title);
+			view = new Building(this, title);
 			
 			//Setup the People
 			model = new ArrayList<Person>();
@@ -110,10 +110,6 @@ public class Control {
 			view.activate();
 		}
 		
-		/*
-		 * Call Back method for View
-		 * paints/repaints model of graphic objects repressing person objects in the frame 
-		 */
 		public void paintPersons(Graphics g) {
 			
 			//find the Person in the Model!
@@ -127,7 +123,6 @@ public class Control {
 				pDot1.healthManager(); //manage health values of the Person
 				pDot1.velocityManager(); //manage social distancing and/or roaming values of the Person
 				
-				//set the color of the for the person oval based on the health status of person object
 				switch(pDot1.state) {
 					case candidate:
 						g.setColor(Color.LIGHT_GRAY);
@@ -153,54 +148,13 @@ public class Control {
 			}
 		}
 		
-		//Declares Wall sprites and positions of walls
-		static Wall vWall1 = new Wall(550, 0, "SocialDistancingImages/wall2.png", true);
-		static Wall vWall2 = new Wall(200, 0, "SocialDistancingImages/wall2.png", true);
-		static Wall vWall3 = new Wall(550, 400, "SocialDistancingImages/wall2.png", true);
-		static Wall vWall4 = new Wall(200, 400, "SocialDistancingImages/wall2.png", true);
-		
-		static Wall hWall1 = new Wall(620, 160, "SocialDistancingImages/wall1.png", false);
-		static Wall hWall2 = new Wall(-25, 160, "SocialDistancingImages/wall1.png", false);
-		static Wall hWall3 = new Wall(620, 400, "SocialDistancingImages/wall1.png", false);
-		static Wall hWall4 = new Wall(-25, 400, "SocialDistancingImages/wall1.png", false);
-		static Wall[] walls = {vWall1, hWall1, vWall2, hWall2, vWall3, hWall3, vWall4, hWall4};
-		static Rectangle[] r = {vWall1.getBounds(), hWall1.getBounds(), vWall2.getBounds(), hWall2.getBounds(),
-				vWall3.getBounds(), hWall3.getBounds(), vWall4.getBounds(), hWall4.getBounds()};
-		
-		
-		public void paintWalls(Graphics g) {
-
-			//draws vertical walls
-			g.drawImage(vWall1.getImage(), vWall1.getX(), vWall1.getY(), view);
-			g.drawImage(vWall2.getImage(), vWall2.getX(), vWall2.getY(), view);
-			g.drawImage(vWall3.getImage(), vWall3.getX(), vWall3.getY(), view);
-			g.drawImage(vWall4.getImage(), vWall4.getX(), vWall4.getY(), view);
-			
-			//draws horizontal walls
-			g.drawImage(hWall1.getImage(), hWall1.getX(), hWall1.getY(), view);
-			g.drawImage(hWall2.getImage(), hWall2.getX(), hWall2.getY(), view);
-			g.drawImage(hWall3.getImage(), hWall3.getX(), hWall3.getY(), view);
-			g.drawImage(hWall4.getImage(), hWall4.getX(), hWall4.getY(), view);
-			
-			//sets text color
-			g.setColor(Color.BLACK);
-			g.setFont(new Font("Roboto", Font.BOLD, 20));
-			
-			g.drawString("Sprouts", 610, 50);
-			g.drawString("Scripps Medical", 5, 50);
-			g.drawString("Board and Brew", 5, 440);
-			g.drawString("Mr. M's House", 590, 440);
-			
-		}
-		
-
 		public void personToWallCollision(Person p) {
 			
 			Rectangle personRect = new Rectangle(p.x,p.y, p.width, p.height);
-			for(int i = 0; i < walls.length;i++)
-			{
-				if(r[i].intersects(personRect))
-					if(walls[i].vertical)
+
+			for (Wall wall : view.walls) {
+				if(wall.getBounds().intersects(personRect))
+					if(wall.vertical)
 					{
 						p.vx *= -1;
 					}
