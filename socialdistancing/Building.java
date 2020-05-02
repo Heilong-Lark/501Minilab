@@ -36,7 +36,7 @@ public class Building extends JPanel implements ActionListener{
 	
 	/* constructor will setup our main Graphic User Interface - a simple Frame! */
 	public Building(Control ctl, String title) {
-		createWalls();
+		makeWalls();
 		// used for Control callback
 		this.control = ctl;
 		
@@ -87,8 +87,7 @@ public class Building extends JPanel implements ActionListener{
 		
 	} 
 	
-	public void createWalls() {
-		System.out.println("createWalls");
+	public void makeWalls() {
 		for(int i = 0; i < 8; i++) {
 			if(i < 4) {
 				walls.add(new Wall(coords[i][0], coords[i][1], "SocialDistancingImages/wall2.png", true));
@@ -107,13 +106,13 @@ public class Building extends JPanel implements ActionListener{
 		}
 		
 		//text color
-		g.setColor(Color.BLACK);
+		g.setColor(Color.BLUE);
 		g.setFont(new Font("Roboto", Font.BOLD, 20));
 		
-		g.drawString("Sprouts", 610, 50);
-		g.drawString("Scripps Medical", 5, 50);
-		g.drawString("Board and Brew", 5, 440);
-		g.drawString("Mr. M's House", 590, 440);
+		g.drawString("Daiso", 610, 50);
+		g.drawString("Pokemon Center", 5, 50);
+		g.drawString("99 Ranch Market", 5, 440);
+		g.drawString("Leader Zin's House", 590, 440);
 		
 	}
 		
